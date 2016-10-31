@@ -28,11 +28,11 @@ git config --global user.email ${USER_EMAIL}
 git config --global user.name "${USER_NAME}"
 
 ## Repository URL
-REPO=$(git config remote.origin.url)
-REPO=${REPO/git:\/\/github.com\//git@github.com:}
-REPO=${REPO/https:\/\/github.com\//git@github.com:}
+GIT_REPOSITORY=$(git config remote.origin.url)
+GIT_REPOSITORY=${GIT_REPOSITORY/git:\/\/github.com\//git@github.com:}
+GIT_REPOSITORY=${GIT_REPOSITORY/https:\/\/github.com\//git@github.com:}
 
-echo "REPO: ${REPO}"
+echo "REPO: ${GIT_REPOSITORY}"
 
 ## Loading SSH key
 echo "Loading key..."
@@ -41,15 +41,15 @@ eval "$(ssh-agent -s)"
 chmod 600 ~/.ssh/${SSH_KEY_NAME}
 ssh-add ~/.ssh/${SSH_KEY_NAME}
 
-REV=$(git rev-parse HEAD)
+REVISION=$(git rev-parse HEAD)
 
 ## Create deploy content directory
-REPO_NAME=$(basename $REPO)
+REPO_NAME=$(basename $GIT_REPOSITORY)
 TARGET_DIR=$(mktemp -d /tmp/$REPO_NAME.XXXX)
 
 echo "TARGET_DIR: ${TARGET_DIR}"
 
-git clone --branch "${DEPLOY_BRANCH}" "${REPO}" "${TARGET_DIR}"
+git clone --branch "${DEPLOY_BRANCH}" "${GIT_REPOSITORY}" "${TARGET_DIR}"
 
 ## Copy public content
 rsync -rt --delete --exclude=".git" "${SOURCE_DIR}/" "${TARGET_DIR}/"
@@ -64,7 +64,7 @@ if git diff --quiet --exit-code --cached
 then
   echo 'No change'
 else
-  git commit -m "Publish from $REV"
+  git commit -m "Publish from $REVISION"
   git push --follow-tags origin ${DEPLOY_BRANCH}
 fi
 
