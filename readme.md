@@ -36,6 +36,8 @@ See [publish.sh](.travis/publish.sh)
 
 ## Skip Build
 
+### Commit message
+
 Travis automatically skips the build if the commit contains `[ci skip]`.
 
 - https://docs.travis-ci.com/user/customizing-the-build/#Skipping-a-build
@@ -45,6 +47,11 @@ Example:
 ```shell
 git commit -m 'My commit message [ci skip]'
 ```
+
+### Travis variables
+
+You can skip build by defined `` variable.
+
 
 ## Scaffolding
 
@@ -64,3 +71,10 @@ cd travis-continuous-delivery-hugo-publish
 hugo new post/first-post.md
 echo 'Some text.' >> content/post/first-post.md
 ```
+
+
+## Build configuration
+
+You must defined environement variables via Travis:
+- `USER_EMAIL` : Git user email
+- `USER_NAME` : Git user name
