@@ -9,7 +9,7 @@ This project explains how to manipulate a Git repository within [Travis CI](http
 
 ### Generating SSH keys and encryption
 
-See [travis-secure-key.sh](travis-secure-key.sh)
+See [travis-secure-key.sh](doc/travis-secure-key.sh)
 
 [Adding a new SSH key to your GitHub account](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
