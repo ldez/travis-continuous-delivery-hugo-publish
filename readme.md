@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ldez/travis-continuous-delivery-hugo-publish.svg?branch=hugo)](https://travis-ci.org/ldez/travis-continuous-delivery-hugo-publish)
 
-This project explains how to manipulate a Git repository within [Travis CI](https://travis-ci.org) to publish a static site on GitHub Page.
+This project explains how to manipulate a Git repository within [Travis CI](https://travis-ci.org) to publish a static site build with [Hugo](https://gohugo.io/) on GitHub Page.
 
 
 ## SSH way (recommended)
